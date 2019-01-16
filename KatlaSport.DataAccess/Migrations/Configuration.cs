@@ -89,6 +89,8 @@ namespace KatlaSport.DataAccess.Migrations
                     CategoryId = 1,
                     IsDeleted = false,
                     CreatedBy = creatorId,
+                    ManufacturerCode = "12345",
+                    Price = 123.4M,
                     LastUpdatedBy = creatorId,
                     LastUpdated = timestamp
                 },
@@ -100,6 +102,8 @@ namespace KatlaSport.DataAccess.Migrations
                     CategoryId = 1,
                     IsDeleted = false,
                     CreatedBy = creatorId,
+                    ManufacturerCode = "12346",
+                    Price = 123.5M,
                     LastUpdatedBy = creatorId,
                     LastUpdated = timestamp
                 },
@@ -111,6 +115,8 @@ namespace KatlaSport.DataAccess.Migrations
                     CategoryId = 2,
                     IsDeleted = false,
                     CreatedBy = creatorId,
+                    ManufacturerCode = "12347",
+                    Price = 123.7M,
                     LastUpdatedBy = creatorId,
                     LastUpdated = timestamp
                 },
@@ -122,6 +128,8 @@ namespace KatlaSport.DataAccess.Migrations
                     CategoryId = 3,
                     IsDeleted = false,
                     CreatedBy = creatorId,
+                    ManufacturerCode = "12348",
+                    Price = 123.8M,
                     LastUpdatedBy = creatorId,
                     LastUpdated = timestamp
                 });
