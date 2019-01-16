@@ -2,6 +2,9 @@ namespace KatlaSport.DataAccess.Migrations
 {
     using System.Data.Entity.Migrations;
 
+    /// <summary>
+    /// Adds description, manufacture and price fields.
+    /// </summary>
     public partial class AddProductDescriptionManCodePrice : DbMigration
     {
         public override void Up()
