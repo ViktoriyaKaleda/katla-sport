@@ -52,7 +52,6 @@ export class HiveFormComponent implements OnInit {
   }
 
   onPurge() {
-    this.onUndelete();
     this.hiveService.deleteHive(this.hive.id).subscribe(c => this.navigateToHives());
   }
 }
