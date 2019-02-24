@@ -13,9 +13,19 @@
         public int ProductId { get; set; }
 
         /// <summary>
-        /// Gets or sets a location ID.
+        /// Gets or sets a product name.
         /// </summary>
-        public int HiveSectionId { get; set; }
+        public string ProductName { get; set; }
+
+        /// <summary>
+        /// Gets or sets a product code.
+        /// </summary>
+        public string ProductCode { get; set; }
+
+        /// <summary>
+        /// Gets or sets a parent product category code.
+        /// </summary>
+        public string ProductCategoryCode { get; set; }
 
         /// <summary>
         /// Gets or sets a quantity of items of certain product in the location.
