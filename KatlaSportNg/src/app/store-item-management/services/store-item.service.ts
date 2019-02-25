@@ -8,7 +8,7 @@ import { StoreItem } from '../models/store-item';
     providedIn: 'root'
 })
 export class StoreItemService {
-    private url = environment.apiUrl + 'api/storeItems/';
+    private url = environment.apiUrl + 'api/storeItems/sections/';
 
     constructor(private http: HttpClient) { }
 
