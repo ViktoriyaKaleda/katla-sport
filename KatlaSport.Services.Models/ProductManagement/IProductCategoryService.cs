@@ -24,6 +24,13 @@ namespace KatlaSport.Services.ProductManagement
         Task<ProductCategory> GetCategoryAsync(int categoryId);
 
         /// <summary>
+        /// Gets a list of allowed product categories for specified hive section.
+        /// </summary>
+        /// <param name="hiveSectionId">A hive section identifier.</param>
+        /// <returns>A <see cref="Task{List{ProductCategory}}"/>.</returns>
+        Task<List<ProductCategory>> GetAllowedHiveSectionProductCategoriesAsync(int hiveSectionId);
+
+        /// <summary>
         /// Creates a new product category.
         /// </summary>
         /// <param name="createRequest">A <see cref="UpdateProductCategoryRequest"/>.</param>
