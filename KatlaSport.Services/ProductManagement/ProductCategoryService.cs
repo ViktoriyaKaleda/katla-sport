@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using KatlaSport.DataAccess;
 using KatlaSport.DataAccess.ProductCatalogue;
+using KatlaSport.DataAccess.ProductStoreHive;
 using DbProductCategory = KatlaSport.DataAccess.ProductCatalogue.ProductCategory;
 
 namespace KatlaSport.Services.ProductManagement
@@ -15,17 +16,20 @@ namespace KatlaSport.Services.ProductManagement
     public class ProductCategoryService : IProductCategoryService
     {
         private readonly IProductCatalogueContext _context;
+        private readonly IProductStoreHiveContext _productStoreHiveContext;
         private readonly IUserContext _userContext;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProductCategoryService"/> class with specified <see cref="IProductCatalogueContext"/>.
         /// </summary>
         /// <param name="context">A <see cref="IProductCatalogueContext"/>.</param>
+        /// <param name="productStoreHiveContext">A <see cref="IProductStoreHiveContext"/>.</param>
         /// <param name="userContext">A <see cref="IUserContext"/>.</param>
-        public ProductCategoryService(IProductCatalogueContext context, IUserContext userContext)
+        public ProductCategoryService(IProductCatalogueContext context, IProductStoreHiveContext productStoreHiveContext, IUserContext userContext)
         {
-            _context = context ?? throw new ArgumentNullException();
-            _userContext = userContext ?? throw new ArgumentNullException();
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+            _productStoreHiveContext = productStoreHiveContext ?? throw new ArgumentNullException(nameof(productStoreHiveContext));
+            _userContext = userContext ?? throw new ArgumentNullException(nameof(userContext));
         }
 
         /// <inheritdoc/>
@@ -53,6 +57,13 @@ namespace KatlaSport.Services.ProductManagement
             }
 
             return Mapper.Map<DbProductCategory, ProductCategory>(dbCategories[0]);
+        }
+
+        /// <inheritdoc/>
+        public async Task<List<ProductCategory>> GetAllowedHiveSectionProductCategoriesAsync(int hiveSectionId)
+        {
+            var dbAllowedCategories = await _productStoreHiveContext.Categories.Where(c => c.StoreHiveSectionId == hiveSectionId).ToListAsync();
+            return dbAllowedCategories.Select(c => Mapper.Map<ProductCategory>(c.Category)).ToList();
         }
 
         /// <inheritdoc/>
