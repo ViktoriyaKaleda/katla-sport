@@ -29,7 +29,6 @@ export class StoreItemListComponent implements OnInit {
             this.hiveId = p['hiveId'];
             this.hiveSectionId = p['id'];
             this.storeItemService.getHiveSectionStoreItems(this.hiveSectionId).subscribe(i => {
-                console.log(i);
                 this.confirmedStoreItems = i.filter(si => si.isApproved == true && si.isDeleted == false);
                 this.unconfirmedStoreItems = i.filter(si => si.isApproved == false && si.isDeleted == false);
                 this.deletedStoreItems = i.filter(si => si.isDeleted == true);
@@ -46,6 +45,7 @@ export class StoreItemListComponent implements OnInit {
             storeItemListItem.quantity,
             true
         )).subscribe(i => {
+            storeItemListItem.isApproved = true;
             storeItemListItem.confirmationDate = new Date();
             let index = this.unconfirmedStoreItems.indexOf(storeItemListItem);
             if (index !== -1) this.unconfirmedStoreItems.splice(index, 1);
@@ -55,6 +55,7 @@ export class StoreItemListComponent implements OnInit {
 
     onDelete(storeItemListItem: StoreItemListItem) {
         this.storeItemService.setHiveStatus(storeItemListItem.id, true).subscribe(i => {
+            storeItemListItem.isDeleted = true;
             storeItemListItem.deletionDate = new Date();
             if (storeItemListItem.isApproved == true) {
                 if (this.deleteItemFromCollection(storeItemListItem, this.confirmedStoreItems))
