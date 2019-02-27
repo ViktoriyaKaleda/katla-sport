@@ -66,6 +66,7 @@ namespace KatlaSport.Services.StoreItemManagement
             }
 
             var dbStoreItem = Mapper.Map<UpdateStoreItemRequest, DbStoreItem>(createRequest);
+            dbStoreItem.CreatedDate = DateTime.Now;
             _storeItemContext.Items.Add(dbStoreItem);
 
             await _storeItemContext.SaveChangesAsync();
@@ -94,6 +95,11 @@ namespace KatlaSport.Services.StoreItemManagement
             }
 
             var dbStoreItem = dbStoreItems[0];
+
+            if (dbStoreItem.IsApproved != updateRequest.IsApproved)
+            {
+                dbStoreItem.ConfirmationDate = DateTime.Now;
+            }
 
             Mapper.Map(updateRequest, dbStoreItem);
 

@@ -26,6 +26,6 @@ namespace KatlaSport.Services.StoreItemManagement
         /// <summary>
         /// Gets or sets a value indicating whether a store item is approved.
         /// </summary>
-        public int IsApproved { get; set; }
+        public bool IsApproved { get; set; }
     }
 }

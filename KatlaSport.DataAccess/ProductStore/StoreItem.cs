@@ -52,6 +52,6 @@ namespace KatlaSport.DataAccess.ProductStore
         /// <summary>
         /// Gets or sets a timestamp when the store item was confirmed.
         /// </summary>
-        public DateTime ConfirmationDate { get; set; }
+        public DateTime? ConfirmationDate { get; set; }
     }
 }
