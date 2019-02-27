@@ -85,6 +85,10 @@
     <Compile Include="Migrations\201902272033389_SetConfirmationDateNullableInStoreItemTable.Designer.cs">
       <DependentUpon>201902272033389_SetConfirmationDateNullableInStoreItemTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902272135466_AddIsDeletedDeletionDateFieldsToStoreItem.cs" />
+    <Compile Include="Migrations\201902272135466_AddIsDeletedDeletionDateFieldsToStoreItem.Designer.cs">
+      <DependentUpon>201902272135466_AddIsDeletedDeletionDateFieldsToStoreItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902272033389_SetConfirmationDateNullableInStoreItemTable.resx">
       <DependentUpon>201902272033389_SetConfirmationDateNullableInStoreItemTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902272135466_AddIsDeletedDeletionDateFieldsToStoreItem.resx">
+      <DependentUpon>201902272135466_AddIsDeletedDeletionDateFieldsToStoreItem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

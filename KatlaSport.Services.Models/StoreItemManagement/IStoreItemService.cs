@@ -33,5 +33,13 @@ namespace KatlaSport.Services.StoreItemManagement
         /// <param name="createRequest">A <see cref="UpdateStoreItemRequest"/>.</param>
         /// <returns>A <see cref="Task{StoreItem}"/>.</returns>
         Task<StoreItem> UpdateStoreItemAsync(int storeItemId, UpdateStoreItemRequest createRequest);
+
+        /// <summary>
+        /// Deletes an existed hive section store item.
+        /// </summary>
+        /// <param name="storeItemId">A store item identifier.</param>
+        /// <param name="deletedStatus">A new status.</param>
+        /// <returns>A <see cref="Task"/>.</returns>
+        Task SetStatusAsync(int storeItemId, bool deletedStatus);
     }
 }
