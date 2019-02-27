@@ -77,6 +77,14 @@
     <Compile Include="Migrations\201901162036464_FixProductManCodePrice.Designer.cs">
       <DependentUpon>201901162036464_FixProductManCodePrice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902271552073_AddIsApprovedCreatedDateConfirmationDateFieldsToStoreItem.cs" />
+    <Compile Include="Migrations\201902271552073_AddIsApprovedCreatedDateConfirmationDateFieldsToStoreItem.Designer.cs">
+      <DependentUpon>201902271552073_AddIsApprovedCreatedDateConfirmationDateFieldsToStoreItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902272033389_SetConfirmationDateNullableInStoreItemTable.cs" />
+    <Compile Include="Migrations\201902272033389_SetConfirmationDateNullableInStoreItemTable.Designer.cs">
+      <DependentUpon>201902272033389_SetConfirmationDateNullableInStoreItemTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +106,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901162036464_FixProductManCodePrice.resx">
       <DependentUpon>201901162036464_FixProductManCodePrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902271552073_AddIsApprovedCreatedDateConfirmationDateFieldsToStoreItem.resx">
+      <DependentUpon>201902271552073_AddIsApprovedCreatedDateConfirmationDateFieldsToStoreItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902272033389_SetConfirmationDateNullableInStoreItemTable.resx">
+      <DependentUpon>201902272033389_SetConfirmationDateNullableInStoreItemTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

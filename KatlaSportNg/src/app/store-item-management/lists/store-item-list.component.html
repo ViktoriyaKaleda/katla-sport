@@ -1,26 +1,88 @@
 <div class="container">
-    <h2>Hive Section Store Items</h2>
-    <table class="table table-nonfluid">
-      <thead>
-        <th scope="col">#</th>
-        <th scope="col">Product Id</th>
-        <th scope="col">Product Name</th>
-        <th scope="col">Product Code</th>
-        <th scope="col">Product Category Code</th>
-        <th scope="col">Quantity</th>
-        <th scope="col"></th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let storeItem of storeItems">
-          <th scope="row">{{ storeItem.id }}</th>
-          <td class="text-center">{{ storeItem.productId }}</td>
-          <td>{{ storeItem.productName }}</td>
-          <td>{{ storeItem.productCode }}</td>
-          <td>{{ storeItem.productCategoryCode }}</td>
-          <td>{{ storeItem.quantity }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <h2>Hive Section # {{ hiveSectionId }}</h2>  
+    <div id="tables" class="mb-3">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseApproved" aria-expanded="true" aria-controls="collapseApproved">
+                    Confirmed Store Items
+                    </button>
+                </h2>
+            </div>        
+            <div id="collapseApproved" class="collapse multi-collapse show" aria-labelledby="headingOne" >
+                <div class="card-body">
+                    <table class="table table-nonfluid">
+                        <thead>
+                            <th scope="col">#</th>
+                            <th scope="col">Product Id</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Product Code</th>
+                            <th scope="col">Product Category Code</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Confirmation Date</th>
+                            <th scope="col"></th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let storeItem of confirmedStoreItems">
+                                <th scope="row">{{ storeItem.id }}</th>
+                                <td class="text-center">{{ storeItem.productId }}</td>
+                                <td>{{ storeItem.productName }}</td>
+                                <td>{{ storeItem.productCode }}</td>
+                                <td>{{ storeItem.productCategoryCode }}</td>
+                                <td>{{ storeItem.quantity }}</td>
+                                <td>{{ storeItem.confirmationDate | date: 'dd-MM-yyyy'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseUnapproved" aria-expanded="false" aria-controls="collapseUnapproved">
+                    Unconfirmed Store Items
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseUnapproved" class="collapse multi-collapse" aria-labelledby="headingTwo">
+                <div class="card-body">
+                    <table class="table table-nonfluid">
+                        <thead>
+                            <th scope="col">#</th>
+                            <th scope="col">Product Id</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Product Code</th>
+                            <th scope="col">Product Category Code</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Created Date</th>
+                            <th scope="col"></th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let storeItem of unconfirmedStoreItems">
+                                <th scope="row">{{ storeItem.id }}</th>
+                                <td class="text-center">{{ storeItem.productId }}</td>
+                                <td>{{ storeItem.productName }}</td>
+                                <td>{{ storeItem.productCode }}</td>
+                                <td>{{ storeItem.productCategoryCode }}</td>
+                                <td>{{ storeItem.quantity }}</td>
+                                <td>{{ storeItem.createdDate | date: 'dd-MM-yyyy'}}</td>
+                                <td>
+                                    <span class="btn-toolbar" role="toolbar" aria-label="Store item action buttons"
+                                        style="display: block; white-space:nowrap;">
+                                        <div class="btn-group mr-2" role="group" (click)="onConfirm(storeItem)"> 
+                                            <button type="button" class="btn btn-success">Confirm addition</button>
+                                        </div>                                        
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>            
+    </div>
+
     <div class="btn-toolbar" role="toolbar" aria-label="Action buttons">
       <div class="btn-group mr-1" role="group" aria-label="Back group">
         <button routerLink="/hive/{{ hiveId }}/sections" type="button" class="btn btn-primary">Back</button>

@@ -26,6 +26,7 @@ export class HiveSectionService {
   }
 
   updateHiveSection(hiveSection: HiveSection): Observable<Object> {
+      console.log(hiveSection);
     return this.http.put<HiveSection>(`${this.url}${hiveSection.id}`, hiveSection);
   }
 
