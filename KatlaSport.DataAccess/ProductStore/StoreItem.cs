@@ -1,4 +1,5 @@
-﻿using KatlaSport.DataAccess.ProductCatalogue;
+﻿using System;
+using KatlaSport.DataAccess.ProductCatalogue;
 using KatlaSport.DataAccess.ProductStoreHive;
 
 namespace KatlaSport.DataAccess.ProductStore
@@ -37,5 +38,20 @@ namespace KatlaSport.DataAccess.ProductStore
         /// Gets or sets a quantity of items of certain product in the location.
         /// </summary>
         public int Quantity { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether a store item is approved.
+        /// </summary>
+        public bool IsApproved { get; set; }
+
+        /// <summary>
+        /// Gets or sets a timestamp when the store item was added.
+        /// </summary>
+        public DateTime CreatedDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets a timestamp when the store item was confirmed.
+        /// </summary>
+        public DateTime ConfirmationDate { get; set; }
     }
 }
