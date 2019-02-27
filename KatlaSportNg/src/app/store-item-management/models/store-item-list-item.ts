@@ -8,6 +8,8 @@ export class StoreItemListItem {
         public quantity: number,
         public isApproved: boolean,
         public createdDate: Date,
-        public confirmationDate: Date
+        public confirmationDate: Date,
+        public isDeleted: boolean,
+        public deletionDate: Date
     ) { }
 }

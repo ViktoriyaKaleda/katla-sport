@@ -50,6 +50,11 @@ namespace KatlaSport.Services.StoreItemManagement
         public DateTime? ConfirmationDate { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether a store item is deleted.
+        /// </summary>
+        public bool IsDeleted { get; set; }
+
+        /// <summary>
         /// Gets or sets a timestamp when the store item was deleted.
         /// </summary>
         public DateTime? DeletionDate { get; set; }
