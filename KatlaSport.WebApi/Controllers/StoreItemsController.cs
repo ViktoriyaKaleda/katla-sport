@@ -82,5 +82,16 @@ namespace KatlaSport.WebApi.Controllers
             await _storeItemService.UpdateStoreItemAsync(id, updateRequest);
             return ResponseMessage(Request.CreateResponse(HttpStatusCode.NoContent));
         }
+
+        [HttpPut]
+        [Route("{storeItemId:int:min(1)}/status/{deletedStatus:bool}")]
+        [SwaggerResponse(HttpStatusCode.NoContent, Description = "Sets deleted status for an existed hive.")]
+        [SwaggerResponse(HttpStatusCode.NotFound)]
+        [SwaggerResponse(HttpStatusCode.InternalServerError)]
+        public async Task<IHttpActionResult> SetStatusAsync([FromUri] int storeItemId, [FromUri] bool deletedStatus)
+        {
+            await _storeItemService.SetStatusAsync(storeItemId, deletedStatus);
+            return ResponseMessage(Request.CreateResponse(HttpStatusCode.NoContent));
+        }
     }
 }

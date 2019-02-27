@@ -53,5 +53,15 @@ namespace KatlaSport.DataAccess.ProductStore
         /// Gets or sets a timestamp when the store item was confirmed.
         /// </summary>
         public DateTime? ConfirmationDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether a store item is deleted.
+        /// </summary>
+        public bool IsDeleted { get; set; }
+
+        /// <summary>
+        /// Gets or sets a timestamp when the store item was deleted.
+        /// </summary>
+        public DateTime? DeletionDate { get; set; }
     }
 }

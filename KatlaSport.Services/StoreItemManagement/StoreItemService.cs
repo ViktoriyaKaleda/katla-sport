@@ -66,7 +66,7 @@ namespace KatlaSport.Services.StoreItemManagement
             }
 
             var dbStoreItem = Mapper.Map<UpdateStoreItemRequest, DbStoreItem>(createRequest);
-            dbStoreItem.CreatedDate = DateTime.Now;
+            dbStoreItem.CreatedDate = DateTime.UtcNow;
             _storeItemContext.Items.Add(dbStoreItem);
 
             await _storeItemContext.SaveChangesAsync();
@@ -98,7 +98,7 @@ namespace KatlaSport.Services.StoreItemManagement
 
             if (dbStoreItem.IsApproved != updateRequest.IsApproved)
             {
-                dbStoreItem.ConfirmationDate = DateTime.Now;
+                dbStoreItem.ConfirmationDate = DateTime.UtcNow;
             }
 
             Mapper.Map(updateRequest, dbStoreItem);
@@ -106,6 +106,25 @@ namespace KatlaSport.Services.StoreItemManagement
             await _storeItemContext.SaveChangesAsync();
 
             return Mapper.Map<StoreItem>(dbStoreItem);
+        }
+
+        /// <inheritdoc/>
+        public async Task SetStatusAsync(int storeItemId, bool deletedStatus)
+        {
+            var dbStoreItems = await _storeItemContext.Items.Where(i => storeItemId == i.Id).ToArrayAsync();
+
+            if (dbStoreItems.Length == 0)
+            {
+                throw new RequestedResourceNotFoundException();
+            }
+
+            var dbStoreItem = dbStoreItems[0];
+            if (dbStoreItem.IsDeleted != deletedStatus)
+            {
+                dbStoreItem.IsDeleted = deletedStatus;
+                dbStoreItem.DeletionDate = DateTime.UtcNow;
+                await _storeItemContext.SaveChangesAsync();
+            }
         }
     }
 }

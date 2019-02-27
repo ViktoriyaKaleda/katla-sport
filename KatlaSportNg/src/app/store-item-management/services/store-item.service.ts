@@ -26,4 +26,8 @@ export class StoreItemService {
         storeItem.isApproved = true;
         return this.http.put<StoreItem>(`${this.url}${storeItem.id}`, storeItem);
     }
+
+    setHiveStatus(storeItemId: number, deletedStatus: boolean): Observable<Object> {
+        return this.http.put<StoreItem>(`${this.url}${storeItemId}/status/${deletedStatus}`, null);
+      }
 }

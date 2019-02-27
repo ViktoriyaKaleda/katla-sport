@@ -17,6 +17,8 @@ namespace KatlaSport.DataAccess.ProductStore
             Property(i => i.IsApproved).HasColumnName("product_store_item_is_approved");
             Property(i => i.CreatedDate).HasColumnName("product_store_item_created_date");
             Property(i => i.ConfirmationDate).HasColumnName("product_store_item_confirmation_date").IsOptional();
+            Property(i => i.IsDeleted).HasColumnName("product_store_item_is_deleted");
+            Property(i => i.DeletionDate).HasColumnName("product_store_item_deletion_date").IsOptional();
         }
     }
 }
