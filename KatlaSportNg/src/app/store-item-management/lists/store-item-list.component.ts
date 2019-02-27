@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StoreItem } from '../models/store-item';
+import { StoreItemListItem } from '../models/store-item-list-item';
 import { StoreItemService } from '../services/store-item.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class StoreItemListComponent implements OnInit {
 
     hiveId: number;
     hiveSectionId: number;
-    storeItems: StoreItem[];
+    storeItems: StoreItemListItem[];
 
     constructor(
         private route: ActivatedRoute,
