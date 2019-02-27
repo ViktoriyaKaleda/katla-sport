@@ -4,6 +4,7 @@ using Microsoft.Web.Http;
 using Swashbuckle.Swagger.Annotations;
 using System;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -62,6 +63,24 @@ namespace KatlaSport.WebApi.Controllers
             var storeItem = await _storeItemService.CreateStoreItemAsync(createRequest);
             var location = string.Format("/api/storeItems/{0}", storeItem.Id);
             return Created<StoreItem>(location, storeItem);
+        }
+
+        [HttpPut]
+        [Route("{id:int:min(1)}")]
+        [SwaggerResponse(HttpStatusCode.NoContent, Description = "Updates an existed store item.")]
+        [SwaggerResponse(HttpStatusCode.BadRequest)]
+        [SwaggerResponse(HttpStatusCode.Conflict)]
+        [SwaggerResponse(HttpStatusCode.NotFound)]
+        [SwaggerResponse(HttpStatusCode.InternalServerError)]
+        public async Task<IHttpActionResult> UpdateProduct([FromUri] int id, [FromBody] UpdateStoreItemRequest updateRequest)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await _storeItemService.UpdateStoreItemAsync(id, updateRequest);
+            return ResponseMessage(Request.CreateResponse(HttpStatusCode.NoContent));
         }
     }
 }

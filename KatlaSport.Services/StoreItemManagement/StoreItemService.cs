@@ -72,5 +72,34 @@ namespace KatlaSport.Services.StoreItemManagement
 
             return Mapper.Map<StoreItem>(dbStoreItem);
         }
+
+        public async Task<StoreItem> UpdateStoreItemAsync(int storeItemId, UpdateStoreItemRequest updateRequest)
+        {
+            var dbProduct = _productContext.Products.Where(p => p.Id == updateRequest.ProductId).FirstOrDefault();
+            if (dbProduct == null)
+            {
+                throw new RequestedResourceHasConflictException("Product");
+            }
+
+            var dbAllowedSectionCatagegories = _categoryContext.Categories.Where(c => c.StoreHiveSectionId == updateRequest.HiveSectionId && c.ProductCategoryId == dbProduct.Category.Id).FirstOrDefault();
+            if (dbAllowedSectionCatagegories == null)
+            {
+                throw new RequestedResourceHasConflictException("Unallowable product category for this hive section.");
+            }
+
+            var dbStoreItems = await _storeItemContext.Items.Where(i => i.Id == storeItemId).ToArrayAsync();
+            if (dbStoreItems.Length == 0)
+            {
+                throw new RequestedResourceNotFoundException();
+            }
+
+            var dbStoreItem = dbStoreItems[0];
+
+            Mapper.Map(updateRequest, dbStoreItem);
+
+            await _storeItemContext.SaveChangesAsync();
+
+            return Mapper.Map<StoreItem>(dbStoreItem);
+        }
     }
 }
